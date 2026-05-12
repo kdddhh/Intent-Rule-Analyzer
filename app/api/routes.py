@@ -2,7 +2,7 @@ from fastapi import APIRouter, HTTPException
 from app.schema.search_schema import SearchRequest, SearchResponse
 from app.service.search_flow import process_user_query
 
-router = APIRouter(prefix="/api/v1", tags=["Search"])
+router = APIRouter(prefix="/api/data", tags=["Search"])
 
 @router.post("/search", response_model=SearchResponse)
 async def search_endpoint(req: SearchRequest):
