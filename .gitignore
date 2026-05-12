@@ -1,2 +1,16 @@
 .env
 __init__.py
+app/__pycache__/main.cpython-314.pyc
+app/analyze/__pycache__/__init__.cpython-314.pyc
+app/analyze/__pycache__/analyzer.cpython-314.pyc
+app/api/__pycache__/__init__.cpython-314.pyc
+app/api/__pycache__/routes.cpython-314.pyc
+app/conn/__pycache__/__init__.cpython-314.pyc
+app/conn/__pycache__/esConnect.cpython-314.pyc
+app/llm/__pycache__/__init__.cpython-314.pyc
+app/llm/__pycache__/ai_client.cpython-314.pyc
+app/schema/__pycache__/__init__.cpython-314.pyc
+app/schema/__pycache__/search_schema.cpython-314.pyc
+app/service/__pycache__/__init__.cpython-314.pyc
+app/service/__pycache__/elasticService.cpython-314.pyc
+app/service/__pycache__/search_flow.cpython-314.pyc
