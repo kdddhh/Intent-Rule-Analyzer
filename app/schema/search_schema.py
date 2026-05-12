@@ -1,12 +1,12 @@
 from pydantic import BaseModel, Field
-from typing import List, Dict, Any
+from typing import Any
 
-# 1. 요청 모델 (Input DTO)
 class SearchRequest(BaseModel):
-    query: str = Field(..., min_length=2, max_length=200, description="사용자 질문")
+    # Field의 description을 명확히 주어 Swagger UI 자동화 문서의 품질을 높입니다.
+    query: str = Field(..., min_length=2, description="사용자 질문 (예: P0101 조치방법, NX4 시동불량 원인)")
 
-# 2. 응답 모델 (Output DTO) - 실무 권장 사항
 class SearchResponse(BaseModel):
-    intent_detected: str = Field(..., description="파악된 사용자 의도")
-    entities_extracted: List[Dict[str, str]] = Field(..., description="추출된 개체 목록")
-    summary_data: Dict[str, Any] = Field(..., description="Elasticsearch Aggregation 결과")
+    status: str
+    intent: str
+    template_used: str
+    data: dict[str, Any] # Python 3.10+ 네이티브 타입

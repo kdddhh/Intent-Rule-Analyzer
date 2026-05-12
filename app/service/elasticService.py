@@ -1,28 +1,18 @@
-from fastapi import HTTPException
-from app.conn.esConnect import ElasticClientManager
+from app.conn.esConnect import es
+from typing import Any
 
-async def execute_smart_search(intent: str, entities: list):
-    es = ElasticClientManager.get_client()
-    
-    # 1. 파라미터 매핑
-    params = {}
-    for ent in entities:
-        if ent['type'] == 'vehicle': params['model'] = ent['value']
-        if ent['type'] == 'symptom': params['symptom'] = ent['value']
-
-    if not params:
-        raise HTTPException(status_code=400, detail="분석할 주요 키워드(차종, 증상 등)를 찾을 수 없습니다.")
-
-    # 2. 비동기 ES 템플릿 호출
-    template_id = f"{intent}_template"
+async def execute_template(index_name: str, template_id: str, params: dict[str, Any]) -> dict[str, Any]:
+    """Elasticsearch search_template API 호출"""
     try:
         response = await es.search_template(
-            index="repair-logs-*",
-            id=template_id,
-            params=params
+            index=index_name,
+            body={
+                "id": template_id,
+                "params": params
+            }
         )
-        # LLM 전달용 데이터 사이즈 최적화 (Hits 제외, Aggs만 반환)
-        return response.get("aggregations", {})
+        # ES 8.x 클라이언트는 .body 또는 객체 직접 접근을 지원합니다.
+        return dict(response) 
     except Exception as e:
-        # ES 서버 에러 로깅 (실무에서는 logger 사용)
-        raise HTTPException(status_code=500, detail="검색 엔진 처리 중 오류가 발생했습니다.")
+        print(f"❌ ES Template Execution Error [{template_id}]: {e}")
+        raise e
