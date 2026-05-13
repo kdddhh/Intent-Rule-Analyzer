@@ -8,7 +8,7 @@ POST {{baseUrl}}/api/data/search
 Content-Type: application/json
 
 {
-    "query": "C212601 고장코드 해결방안 보여줘"
+    "query": "P2261 고장코드 해결방안 보여줘"
 }
 
 ###
@@ -19,7 +19,7 @@ POST {{baseUrl}}/api/data/search
 Content-Type: application/json
 
 {
-    "query": "경고등 점등 현상 원인 찾아줘"
+    "query": "2026년 1월 경고등 점등 현상 원인 찾아줘"
 }
 
 ###
