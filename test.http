@@ -41,7 +41,7 @@ POST {{baseUrl}}/api/data/search
 Content-Type: application/json
 
 {
-    "query": "최근 6개월간 에어컨 냉매 누설 증상 발생 추이 분석해줘"
+    "query": "최근 6개월간 경고등 점등 증상 발생 추이 분석해줘"
 }
 
 ###
